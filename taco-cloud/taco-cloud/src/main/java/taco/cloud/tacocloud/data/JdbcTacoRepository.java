@@ -2,6 +2,7 @@ package taco.cloud.tacocloud.data;
 
 import org.springframework.stereotype.Repository;
 
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.Arrays;
@@ -38,11 +39,14 @@ public class JdbcTacoRepository implements TacoRepository {
 
     private long saveTacoInfo(Taco taco) {
         taco.setCreatedAt(new Date());
+        PreparedStatementCreatorFactory prepStatCreatorFactory = 
+        new PreparedStatementCreatorFactory(
+            "insert into Taco (name, createdAt) values (?, ?)",
+            Types.VARCHAR, Types.TIMESTAMP
+        );
+        prepStatCreatorFactory.setReturnGeneratedKeys(true);
         PreparedStatementCreator psc = 
-            new PreparedStatementCreatorFactory(
-                "insert into Taco (name, createdAt) values (?, ?)",
-                Types.VARCHAR, Types.TIMESTAMP
-            ).newPreparedStatementCreator(
+            prepStatCreatorFactory.newPreparedStatementCreator(
                 Arrays.asList(
                     taco.getName(),
                     new Timestamp(taco.getCreatedAt().getTime())));

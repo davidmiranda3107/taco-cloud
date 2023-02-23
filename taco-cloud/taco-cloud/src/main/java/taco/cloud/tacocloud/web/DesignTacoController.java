@@ -1,7 +1,6 @@
 package taco.cloud.tacocloud.web;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +39,16 @@ public class DesignTacoController {
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
     }
+
+    @ModelAttribute(name = "order")
+    public Order order() {
+        return new Order();
+    }
+
+    @ModelAttribute(name = "taco")
+    public Taco taco() {
+        return new Taco();
+    }
     
     @GetMapping
     public String showDesignForm(Model model) {
@@ -52,23 +61,11 @@ public class DesignTacoController {
             filterByType(ingredients, type));
         }
  
-        model.addAttribute("design", new Taco());
- 
         return "design";
     }
 
-    @ModelAttribute(name = "order")
-    public Order order() {
-        return new Order();
-    }
-
-    @ModelAttribute(name = "taco")
-    public Taco taco() {
-        return new Taco();
-    }
-
     @PostMapping
-    public String processDesign(@Valid @ModelAttribute("design") Taco design, 
+    public String processDesign(@Valid Taco design, 
             Errors errors,
             @ModelAttribute Order order) {
         if (errors.hasErrors()) {
