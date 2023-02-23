@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import taco.cloud.tacocloud.Taco;
 import taco.cloud.tacocloud.Ingredient;
 import taco.cloud.tacocloud.Order;
@@ -23,7 +21,6 @@ import taco.cloud.tacocloud.Ingredient.Type;
 import taco.cloud.tacocloud.data.IngredientRepository;
 import taco.cloud.tacocloud.data.TacoRepository;
 
-@Slf4j
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
@@ -33,7 +30,6 @@ public class DesignTacoController {
 
     private TacoRepository designRepo;
 
-    @Autowired
     public DesignTacoController(IngredientRepository ingredientRepo,
             TacoRepository designRepo) {
         this.ingredientRepo = ingredientRepo;

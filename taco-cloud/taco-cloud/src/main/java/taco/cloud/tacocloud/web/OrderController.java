@@ -1,7 +1,6 @@
 package taco.cloud.tacocloud.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,11 +9,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import taco.cloud.tacocloud.Order;
 import taco.cloud.tacocloud.data.OrderRepository;
 
-@Slf4j
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("order")
