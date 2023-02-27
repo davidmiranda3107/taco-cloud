@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
@@ -32,6 +33,9 @@ public class Order implements Serializable {
     private Long id;
 
     private Date placedAt; 
+
+    @ManyToOne
+    private User user;
 
     @NotBlank(message="Name is required")
     private String name;

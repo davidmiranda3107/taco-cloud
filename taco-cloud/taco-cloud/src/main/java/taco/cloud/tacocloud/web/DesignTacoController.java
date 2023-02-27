@@ -3,6 +3,7 @@ package taco.cloud.tacocloud.web;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,11 @@ import jakarta.validation.Valid;
 import taco.cloud.tacocloud.Taco;
 import taco.cloud.tacocloud.Ingredient;
 import taco.cloud.tacocloud.Order;
+import taco.cloud.tacocloud.User;
 import taco.cloud.tacocloud.Ingredient.Type;
 import taco.cloud.tacocloud.data.IngredientRepository;
 import taco.cloud.tacocloud.data.TacoRepository;
+import taco.cloud.tacocloud.data.UserRepository;
 
 @Controller
 @RequestMapping("/design")
@@ -30,10 +33,14 @@ public class DesignTacoController {
 
     private TacoRepository designRepo;
 
+    private UserRepository userRepo;
+
     public DesignTacoController(IngredientRepository ingredientRepo,
-            TacoRepository designRepo) {
+            TacoRepository designRepo,
+            UserRepository userRepo) {
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
+        this.userRepo = userRepo;
     }
 
     @ModelAttribute(name = "order")
@@ -47,7 +54,7 @@ public class DesignTacoController {
     }
     
     @GetMapping
-    public String showDesignForm(Model model) {
+    public String showDesignForm(Model model, Principal principal) {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
@@ -56,6 +63,10 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(),
             filterByType(ingredients, type));
         }
+
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        model.addAttribute("user", user);
  
         return "design";
     }
