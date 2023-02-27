@@ -45,7 +45,21 @@ alter table Taco_Order_Taco
 alter table Taco_Order_Taco
  add foreign key (tacos_id) references Taco(id);
 
+ create table if not exists Taco_User (
+ id identity,
+ Username varchar(50) not null,
+ Password varchar(100) not null,
+ Fullname varchar(50) not null,
+ Street varchar(50) not null,
+ City varchar(50) not null,
+ State varchar(20) not null,
+ Zip varchar(10) not null,
+ PhoneNumber varchar(15) not null
+);
+
  create sequence TACO_SEQ as bigint start with 1 increment by 50;
 
  create sequence TACO_ORDER_SEQ as bigint start with 1 increment by 50;
+
+  create sequence TACO_USER_SEQ as bigint start with 1 increment by 50;
  
