@@ -7,18 +7,18 @@ create table if not exists Ingredient (
 create table if not exists Taco (
  id identity,
  name varchar(50) not null,
- createdAt timestamp not null
+ created_At timestamp not null
 );
 
-create table if not exists Taco_Ingredient (
+create table if not exists Taco_Ingredients (
  taco_id bigint not null,
  ingredients_id varchar(4) not null
 );
 
-alter table Taco_Ingredient
+alter table Taco_Ingredients
  add foreign key (taco_id) references Taco(id);
 
-alter table Taco_Ingredient
+alter table Taco_Ingredients
  add foreign key (ingredients_id) references Ingredient(id);
 
 create table if not exists Taco_Order (
@@ -54,7 +54,7 @@ alter table Taco_Order_Taco
  City varchar(50) not null,
  State varchar(20) not null,
  Zip varchar(10) not null,
- PhoneNumber varchar(15) not null
+ Phone_Number varchar(15) not null
 );
 
  create sequence TACO_SEQ as bigint start with 1 increment by 50;
