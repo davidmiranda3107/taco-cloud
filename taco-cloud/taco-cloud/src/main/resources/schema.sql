@@ -54,8 +54,7 @@ alter table Taco_Order_Taco
  City varchar(50) not null,
  State varchar(20) not null,
  Zip varchar(10) not null,
- Phone_Number varchar(15) not null,
- Role varchar(15) not null
+ Phone_Number varchar(15) not null
 );
 
  create sequence TACO_SEQ as bigint start with 1 increment by 50;

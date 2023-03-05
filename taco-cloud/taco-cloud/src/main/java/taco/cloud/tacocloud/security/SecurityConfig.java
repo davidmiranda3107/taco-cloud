@@ -4,10 +4,13 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.SecurityFilterChain;
+
+import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 
 import taco.cloud.tacocloud.data.UserRepository;
 import taco.cloud.tacocloud.User;
@@ -88,33 +91,23 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
-                .requestMatchers("/design", "/orders").hasRole("USER")
-                .requestMatchers("/", "/**").permitAll()
+                .requestMatchers("/design", "/orders/*").hasRole("USER")
+                .requestMatchers("/", "/login", "/register", "/images/*").permitAll()
                 .requestMatchers(HttpMethod.POST, "/ingredients").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/ingredients").hasRole("ADMIN")               
+                .requestMatchers(HttpMethod.POST, "/api/ingredients").hasAuthority("SCOPE_writeIngredients")
+                .requestMatchers(HttpMethod.DELETE, "/api/ingredients").hasAuthority("SCOPE_deleteIngredients")   
+                //.anyRequest().authenticated()
+                //.anyRequest().denyAll()    
             ) 
             .formLogin(form -> form.loginPage("/login").permitAll().defaultSuccessUrl("/design"))        
             .headers(headers -> headers.frameOptions().disable())
-            .csrf().disable();
-            // .csrf(csrf -> csrf
-            //         .ignoringRequestMatchers(PathRequest.toH2Console()));
+            .csrf().disable()
+            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+            .httpBasic(Customizer.withDefaults());
         return http.build();
-        // http.cors()
-        //     .and()
-        //     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        //     .and().formLogin().loginPage("/login")
-        //     .and().logout().logoutSuccessUrl("/")
-        //     .and()
-        //     .securityMatcher("/**")
-        //     .authorizeHttpRequests(authorizeRequest -> authorizeRequest
-        //         .requestMatchers(HttpMethod.GET, "/**").permitAll()
-        //         .requestMatchers(HttpMethod.GET, "/design", "/orders").hasAnyAuthority("SCOPE_tmt:user")
-        //         .requestMatchers(HttpMethod.POST, "/design", "/orders").hasAnyAuthority("SCOPE_tmt:user")
-            
-        //         );
-        // http.csrf().ignoringRequestMatchers("/h2-console/**");
-        // http.headers().frameOptions().sameOrigin();
         
-        // return http.build();
     }
+
+
 }
