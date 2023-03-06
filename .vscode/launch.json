@@ -1,0 +1,53 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Prueba",
+            "request": "launch",
+            "mainClass": "taco.cloud.tacocloud.Prueba",
+            "projectName": "taco-cloud"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TacoCloudApplication<taco-cloud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "taco.cloud.tacocloud.TacoCloudApplication",
+            "projectName": "taco-cloud",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53576 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=taco-cloud"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TacoCloudAuthServerApplication<taco-cloud-auth-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "taco.cloud.TacoCloudAuthServerApplication",
+            "projectName": "taco-cloud-auth-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SecurityApplication<security>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "taco.cloud.security.SecurityApplication",
+            "projectName": "security",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53595 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=security"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoclientApplication<democlient>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "taco.cloud.democlient.DemoclientApplication",
+            "projectName": "democlient",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
