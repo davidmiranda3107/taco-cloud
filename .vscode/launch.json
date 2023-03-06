@@ -15,7 +15,8 @@
             "mainClass": "taco.cloud.tacocloud.TacoCloudApplication",
             "projectName": "taco-cloud",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53576 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=taco-cloud"
         },
         {
             "type": "java",
@@ -34,6 +35,17 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "taco.cloud.security.SecurityApplication",
             "projectName": "security",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53595 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=security"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoclientApplication<democlient>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "taco.cloud.democlient.DemoclientApplication",
+            "projectName": "democlient",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
