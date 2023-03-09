@@ -1,0 +1,12 @@
+spring:
+    h2:
+        console:
+            enabled: true
+    datasource:
+            url=jdbc: h2:mem:testdb
+    datasource:
+            init:
+                mode: always 
+    jpa:
+        hibernate:
+                ddl-auto: none

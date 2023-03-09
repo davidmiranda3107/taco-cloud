@@ -1,0 +1,5 @@
+spring:
+    artemis:
+        broker-url: localhost:8161
+        user: david
+        password: david
