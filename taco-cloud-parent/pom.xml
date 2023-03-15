@@ -28,6 +28,7 @@
       <module>tacocloud-web</module>
 	  <module>tacocloud-security</module>
 	  <module>tacocloud-messaging-jms</module>
+	   <module>tacocloud-messaging-rabbitmq</module>
     </modules>
 
 </project>

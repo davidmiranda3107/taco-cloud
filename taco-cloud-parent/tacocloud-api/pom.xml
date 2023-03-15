@@ -34,12 +34,17 @@
 			<version>${tacocloud.version}</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>sia</groupId>
 			<artifactId>tacocloud-messaging-jms</artifactId>
 			<version>${tacocloud.version}</version>
-		</dependency>
+		</dependency> -->
 
+		<dependency>
+			<groupId>sia</groupId>
+			<artifactId>tacocloud-messaging-rabbitmq</artifactId>
+			<version>${tacocloud.version}</version>
+		</dependency>
 		<!-- Necessary Boot starters -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

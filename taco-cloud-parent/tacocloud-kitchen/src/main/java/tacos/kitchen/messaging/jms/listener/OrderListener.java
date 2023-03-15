@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import tacos.Order;
 import tacos.kitchen.KitchenUI;
 
-@Component
+//@Component
 public class OrderListener {
     
     private KitchenUI ui;

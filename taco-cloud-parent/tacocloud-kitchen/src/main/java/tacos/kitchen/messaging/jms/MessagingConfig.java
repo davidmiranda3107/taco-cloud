@@ -11,7 +11,7 @@ import tacos.Ingredient;
 import tacos.Order;
 import tacos.Taco;
 
-@Configuration
+//@Configuration
 public class MessagingConfig {
     
     @Bean
